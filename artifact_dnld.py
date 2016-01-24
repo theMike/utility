@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+
 import urllib, sys
 from xml.etree import ElementTree
 from xml.etree import ElementPath
@@ -79,7 +81,6 @@ class DownloadArtifact(object):
                 buf = file_to_hash.read(GETCHUNK)
                 
         return (hasher_sha1.hexdigest(),hasher_md5.hexdigest())
-
     
     def downloadArtifact(self):
         url = self.get_artifact_url()
@@ -124,7 +125,6 @@ class DownloadArtifact(object):
 
             print("Downloaded: "+dlfile)
             file_hashes = self.hashfile(dlfile)
-            #logresults("|"+'{0:<45}'.format(os.path.basename(dlfile))+"|"+'{0:<45}'.format(file_hashes[0])+"|")
             print("SHA1: "+file_hashes[0])
             print("MD5 : "+file_hashes[1])
             
@@ -144,8 +144,6 @@ def main():
 
     d = DownloadArtifact(args.nxurl, args.group, args.artifact, args.version, args.repo)
     d.downloadArtifact()
-
-
 
 if __name__ == "__main__":
     main()
